@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mokiu.sim.mapper.MenuMapper">
+    <select id="getMenuListByTeacherId" resultType="Menu">
+        SELECT distinct a.*
+        FROM menu a,
+             teacher_role b,
+             role_menu c
+        WHERE  b.`role_id` = c.`role_id`
+          AND c.`menu_id` = a.`menu_id`
+          AND b.`teacher_id` = #{teacherId}
+          AND a.`parent_id` = #{pid}
+    </select>
+</mapper>
